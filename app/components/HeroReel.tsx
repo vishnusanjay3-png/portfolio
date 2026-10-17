@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import Showreel from "./Showreel";
-import { site } from "@/app/lib/content";
 
 /**
  * Title card + portrait that becomes the showreel as you scroll.
@@ -17,7 +16,7 @@ export default function HeroReel({ children }: { children: React.ReactNode }) {
   const stage = useRef<HTMLElement>(null);
   const sticky = useRef<HTMLDivElement>(null);
   const slot = useRef<HTMLDivElement>(null);
-  const geo = useRef({ stick: 0, travel: 1, start: 0 });
+  const geo = useRef({ travel: 1, start: 0 });
 
   useEffect(() => {
     const el = stage.current, st = sticky.current, s = slot.current;
@@ -50,7 +49,7 @@ export default function HeroReel({ children }: { children: React.ReactNode }) {
         x1: (st.clientWidth - w1) / 2, y1: -stick + nav + (vh - nav - h1) / 2, w1, h1,
       };
       for (const [k, n] of Object.entries(v)) el.style.setProperty(`--${k}`, `${n}px`);
-      geo.current = { stick, travel, start: -stick };
+      geo.current = { travel, start: -stick };
       el.classList.add("ready");
       update();
     };
@@ -64,7 +63,6 @@ export default function HeroReel({ children }: { children: React.ReactNode }) {
       const p = t * t * (3 - 2 * t); // ease in and out
       el.style.setProperty("--p", p.toFixed(4));
       el.classList.toggle("full", p > 0.98);
-      el.classList.toggle("moved", scrolled > 24);
       if (p < 0.9 && video && !video.paused) video.pause();
     };
 
@@ -88,14 +86,6 @@ export default function HeroReel({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // The cue takes you to the moment the portrait has become the reel.
-  const toReel = () => {
-    const el = stage.current;
-    if (!el) return;
-    const { start, travel } = geo.current;
-    scrollTo({ top: el.getBoundingClientRect().top + scrollY + start + travel, behavior: "smooth" });
-  };
-
   return (
     <header className="hero" id="top" ref={stage}>
       <div className="hero-sticky" ref={sticky}>
@@ -110,10 +100,6 @@ export default function HeroReel({ children }: { children: React.ReactNode }) {
           <img className="morph-portrait" src="/portrait.webp" alt="" aria-hidden="true" />
         </div>
       </div>
-      <button type="button" className="cue" onClick={toReel}>
-        <span className="cue-t label">{site.hero.cue}</span>
-        <span className="cue-line" aria-hidden="true"><i /></span>
-      </button>
     </header>
   );
 }

@@ -87,23 +87,6 @@ nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:40;di
   .js .hero-slot img{height:100%}
 }
 
-/* scroll cue: pinned to the bottom of the screen until you start scrolling; tap it to jump to the reel */
-.cue{display:none}
-.js .hero.ready .cue{display:flex;flex-direction:column;align-items:center;gap:10px;position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:30;
-  transform:translateX(-50%);padding:10px 16px;border:0;background:none;color:inherit;font:inherit;cursor:pointer;transition:opacity .4s,transform .4s}
-.js .hero.moved .cue{opacity:0;pointer-events:none;transform:translate(-50%,12px)}
-.cue::before{content:"";position:absolute;z-index:-1;left:50%;bottom:calc(-14px - env(safe-area-inset-bottom,0px));width:100vw;height:170px;transform:translateX(-50%);background:linear-gradient(rgba(12,12,13,0),rgba(12,12,13,.88));pointer-events:none}
-.cue-t{transition:color .2s}
-.cue:is(:hover,:focus-visible) .cue-t{color:var(--screen)}
-.cue-line{position:relative;display:block;width:1px;height:44px;background:linear-gradient(var(--dim),transparent);overflow:hidden}
-.cue-line i{position:absolute;left:-1.5px;top:0;width:4px;height:14px;border-radius:2px;background:var(--safelight);box-shadow:0 0 10px var(--safelight)}
-@media (prefers-reduced-motion:no-preference){
-  .cue-t{animation:breathe 2.4s ease-in-out infinite}
-  .cue-line i{animation:drip 1.8s cubic-bezier(.6,0,.4,1) infinite}
-  .cue:is(:hover,:focus-visible) .cue-line i{animation-duration:1s}
-}
-@keyframes breathe{50%{opacity:.55}}
-@keyframes drip{0%{transform:translateY(-16px);opacity:0}25%,75%{opacity:1}100%{transform:translateY(46px);opacity:0}}
 
 /* showreel */
 .reel{margin-top:clamp(36px,5vw,64px);position:relative;border:1px solid var(--line);border-radius:var(--radius);background:#000;aspect-ratio:16/9;max-width:100%;overflow:hidden}
@@ -138,7 +121,6 @@ section{padding-block:clamp(84px,11vw,150px)}
 /* each card carries its brand colours (--brand, --brand2). Touch screens see it all;
    on hover-capable screens it rests as a white logo and the brand + details come in on hover. */
 .card{--pad:clamp(24px,3vw,40px);--ease:cubic-bezier(.2,.7,.2,1);position:relative;overflow:hidden;display:flex;text-align:left;font:inherit;color:inherit;background:var(--raise);border:1px solid var(--line);border-radius:var(--radius);padding:var(--pad);cursor:pointer;min-height:clamp(380px,34vw,440px);container-type:inline-size;transition:border-color .4s,transform .5s var(--ease)}
-.card::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;z-index:3;background:linear-gradient(90deg,var(--brand),var(--brand2));transform:scaleX(1);transform-origin:left;transition:transform .6s var(--ease)}
 .card::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;transition:opacity .6s var(--ease);
   background:radial-gradient(110% 80% at 100% 0%,color-mix(in srgb,var(--brand) 34%,transparent),transparent 62%),
              radial-gradient(90% 70% at 0% 100%,color-mix(in srgb,var(--brand2) 12%,transparent),transparent 70%)}
@@ -158,16 +140,14 @@ section{padding-block:clamp(84px,11vw,150px)}
 .card .more{display:flex;gap:8px;color:var(--screen);transition:color .2s}
 .card:is(:hover,:focus-visible) .more{color:var(--brand2)}
 @media (hover:hover) and (pointer:fine){
-  .card::before{transform:scaleX(0)}
   .card::after{opacity:0}
   .card .logo{top:50%;right:50%;width:42%;height:40%;transform:translate(50%,-50%);object-position:center;filter:brightness(0) invert(1);opacity:.92}
   .card .details{opacity:0;transform:translateY(18px)}
-  .card:is(:hover,:focus-visible)::before{transform:scaleX(1)}
   .card:is(:hover,:focus-visible)::after{opacity:1}
   .card:is(:hover,:focus-visible) .logo{top:var(--pad);right:var(--pad);width:64px;height:52px;transform:none;object-position:right top;filter:none;opacity:1}
   .card:is(:hover,:focus-visible) .details{opacity:1;transform:none;transition-delay:.12s}
 }
-@media (prefers-reduced-motion:reduce){.card,.card *,.card::before,.card::after{transition-duration:.01s!important}}
+@media (prefers-reduced-motion:reduce){.card,.card *,.card::after{transition-duration:.01s!important}}
 
 .tally{margin-top:clamp(60px,8vw,100px)}
 .tally .stats{margin-top:16px;grid-template-columns:repeat(5,minmax(0,1fr))}
@@ -385,7 +365,6 @@ a:is(:hover,:focus-visible) .arr,button:is(:hover,:focus-visible) .arr{color:var
   .booted .hero-slot img,.booted .morph{animation:develop 1.5s .35s ease-out both}
   .booted .hero .lead{animation:rise .8s .7s cubic-bezier(.2,.7,.2,1) both}
   .booted .hero .lead+p{animation:rise .8s .8s cubic-bezier(.2,.7,.2,1) both}
-  .booted .cue{animation:fadeIn .6s 1.2s ease both}
   .booted .marquee{animation:fadeIn .8s 1s ease both}
 }
 @keyframes fadeIn{from{opacity:0}}

@@ -15,8 +15,7 @@
   "hero": {
     "eyebrow": "Creative {Director}",
     "lead": "I make things worth watching.",
-    "intro": "Started out on film sets. Now I make founders, brands and products hard to scroll past. Same job, really.",
-    "cue": "Shall we scroll?"
+    "intro": "Started out on film sets. Now I make founders, brands and products hard to scroll past by strengthening their social presence through strategic content creation and creative storytelling, driving visibility, engagement, and growth. (Same job, really)"
   },
   "showreel": {
     "title": "Showreel",
@@ -141,8 +140,8 @@
       },
       {
         "name": "Hermitcrabs",
-        "meta": "HubSpot agency · Aug 2025 → Oct 2026",
-        "hook": "300+ websites built and almost nothing on camera. Fixed that.",
+        "meta": "HubSpot agency · Oct 2025 → present",
+        "hook": "300+ websites built and almost no public knowledge of it. Created videos showcasing HermitCrabs’ digital solutions and products, highlighting the agency’s expertise and the value it delivers to clients.",
         "big": "Product showcase{·}Walk-throughs{·}Launch Teasers{·}Event Films",
         "bigCaption": "2 years running",
         "brief": "A HubSpot CMS development and design agency with 300+ websites behind it. Phenomenal work and the amazing people behind the company needs to be seen.",
@@ -176,7 +175,7 @@
       },
       {
         "name": "Forward Company",
-        "meta": "AI agency · Brand Designer · Jun 2026 → Oct 2026",
+        "meta": "AI agency · Brand Designer · Jun 2026 → present",
         "hook": "Help businesses become AI native. At Forward, we don't sell what we don't use.",
         "big": "0{→}1",
         "bigCaption": "Identity, positioning and campaigns",
@@ -212,8 +211,8 @@
     "numbersLabel": "The numbers",
     "stats": [
       {
-        "n": "4.2K{→}11.3K{+}",
-        "p": "3x new followers grown"
+        "n": "{~}3X",
+        "p": "new followers grown"
       },
       {
         "n": "{~}30K",
@@ -352,7 +351,7 @@
         ]
       },
       {
-        "when": "Aug 2025 → Oct 2026",
+        "when": "Oct 2025 → present",
         "org": "Hermitcrabs",
         "role": "Brand Designer – Growth",
         "logo": "/logos/hermitcrabs.png",
@@ -381,7 +380,7 @@
         ]
       },
       {
-        "when": "Jun 2026 → Oct 2026",
+        "when": "Jun 2026 → present",
         "org": "Forward Company",
         "role": "Brand Designer",
         "logo": "/logos/forward-company.png",
