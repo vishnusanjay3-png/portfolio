@@ -10,16 +10,16 @@ Live site: https://vishnusanjay-port.vercel.app
 
 ## Where things are
 
-Content lives as typed data arrays at the top of each section component:
+All the site's writing (and the links, images and ids that go with it) lives in `content/site.json`, typed and loaded by `app/lib/content.tsx`. Text conventions: `{words}` marks the accent (red; outlined in the closing title), a line break becomes `<br>`.
 
-- `app/page.tsx`: page order, nav, hero copy, crafts marquee, closing section.
-- `app/components/Work.tsx`: `projects` (work cards, brand colours, LinkedIn links) and `stats`.
-- `app/components/Backstory.tsx`: `beats` (the timeline).
-- `app/components/Films.tsx`: `feature` and `shorts` (YouTube ids), rendered through `Thumb.tsx`.
-- `app/components/Contact.tsx`: `ways` (contact tiles).
-- `app/components/HeroReel.tsx`: hero with the showreel. `Effects.tsx`: scroll reveals, count-ups, film grain.
+To edit the write-ups: `npm run dev`, open http://localhost:3000/edit. Every text field is an open box with the live site beside it; typing saves to `content/site.json` and the preview updates. URLs, images, logos, ids and colours are deliberately left out of the form. `/edit` and `/api/content` only exist in dev (404 in production). New text fields added to the JSON show up in the form automatically.
+
+- `app/page.tsx`: page order and nav.
+- `app/components/Work.tsx`: work cards, the story dialog and the numbers row.
+- `app/components/Backstory.tsx`: the timeline rows; `Post.tsx` is the post-thumbnail card, `Thumb.tsx` the YouTube card.
+- `app/components/Films.tsx`, `Contact.tsx` (contact tiles stay in code), `HeroReel.tsx` (hero + showreel), `Effects.tsx` (reveals, count-ups, grain).
 - `app/globals.css`: design tokens (`:root`) and all styles.
-- `public/`: media served from the site root: `intro.mp4`, `poster.jpg`, `portrait.webp`, `logos/*.png`, `films/*.jpg`.
+- `public/`: media served from the site root: `intro.mp4`, `poster.jpg`, `portrait.webp`, `logos/`, `films/`, `story/`.
 
 ## Design rules
 

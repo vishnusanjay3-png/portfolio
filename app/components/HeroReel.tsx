@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Showreel from "./Showreel";
+import { site } from "@/app/lib/content";
 
 /**
  * Title card with the portrait on the right. On wide screens the hero pins while you scroll,
@@ -75,7 +76,7 @@ export default function HeroReel({ children }: { children: React.ReactNode }) {
           <Showreel />
           <img className="morph-portrait" src="/portrait.webp" alt="" aria-hidden="true" />
         </div>
-        <span className="cue label">Scroll for the showreel</span>
+        <span className="cue label">{site.hero.cue}</span>
       </div>
     </header>
   );

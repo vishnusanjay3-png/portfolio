@@ -1,22 +1,14 @@
-import Thumb, { type Video } from "./Thumb";
+import Thumb from "./Thumb";
+import { site } from "@/app/lib/content";
 
-const feature: Video = { id: "Q3N-oOjJQ8U", title: "Vindhya Victim Verdict V3", note: "Feature film debut · Cast · Official trailer" };
-
-const shorts: Video[] = [
-  { id: "sFmAIdfOnMg", title: "Luv", note: "Written, directed, edited & acted" },
-  { id: "s2daHoJaBqo", title: "Favourite Medicine", note: "Production manager · DOP · Art" },
-  { id: "nTZSMuOqzlk", title: "Ugavar", note: "Cast" },
-  { id: "uHmMFmvOfas", title: "Perspective", note: "Cast" },
-  { id: "uC02-eP1a9g", title: "The Arrival", note: "Cast · Shot on iPhone" },
-  { id: "Vv3zDKbDRAU", title: "The Visitor", note: "Cast" },
-];
+const { feature, shorts } = site.films;
 
 export default function Films() {
   return (
     <section className="wrap" id="films">
       <div className="head rv">
-        <h2 className="bill">Films</h2>
-        <span className="label">On screen &amp; behind it</span>
+        <h2 className="bill">{site.films.heading}</h2>
+        <span className="label">{site.films.label}</span>
       </div>
       <div className="films">
         <div className="rv"><Thumb v={feature} big /></div>

@@ -1,6 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { site } from "@/app/lib/content";
+
+const t = site.showreel;
 
 export default function Showreel() {
   const vid = useRef<HTMLVideoElement>(null);
@@ -27,12 +30,12 @@ export default function Showreel() {
         controls={playing}
         onEnded={ended}
       />
-      <button type="button" aria-label="Play the showreel with sound" hidden={playing} onClick={play}>
+      <button type="button" aria-label={`Play the ${t.title.toLowerCase()} with sound`} hidden={playing} onClick={play}>
         <span className="go">
           <span className="disc" aria-hidden="true" />
-          <span>Showreel<small>0:25 · Sound on</small></span>
+          <span>{t.title}<small>{t.meta}</small></span>
         </span>
-        <span className="label" style={{ color: "#d9d7d1" }}>Scene 01 · Take 01</span>
+        <span className="label" style={{ color: "#d9d7d1" }}>{t.slate}</span>
       </button>
     </div>
   );

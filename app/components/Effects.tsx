@@ -57,6 +57,8 @@ export default function Effects() {
     if (c && x) {
       let resizeTimer: ReturnType<typeof setTimeout> | undefined;
       const size = () => {
+        // A frame can start out zero-sized (e.g. inside a preview); wait for the resize.
+        if (!innerWidth || !innerHeight) return;
         const d = x.createImageData((c.width = Math.ceil(innerWidth / 2)), (c.height = Math.ceil(innerHeight / 2)));
         const a = d.data;
         for (let j = 0; j < a.length; j += 4) {
