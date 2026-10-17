@@ -21,6 +21,12 @@ To edit the write-ups: `npm run dev`, open http://localhost:3000/edit. Every tex
 - `app/globals.css`: design tokens (`:root`) and all styles.
 - `public/`: media served from the site root: `intro.mp4`, `poster.jpg`, `portrait.webp`, `logos/`, `films/`, `story/`.
 
+## Resume
+
+The "Download Resume" button (closing section) downloads `public/resume.pdf` as `Vishnu-Sanjay-Resume.pdf`.
+- Current file: the ATS-friendly version built from the site's facts by `python3 scripts/resume.py` (reportlab). Edit the text at the top of that script and re-run to update it.
+- To use a designed resume instead, replace `public/resume.pdf` with it (same file name); nothing else changes.
+
 ## Design rules
 
 - One type family, Archivo, in three voices: `.bill` (condensed 62%, uppercase display), `.label` (small caps-style labels), body text.

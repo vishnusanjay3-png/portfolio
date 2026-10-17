@@ -36,7 +36,7 @@ export type Beat = {
   /** Small in-page links. */
   links?: { label: string; href: string }[];
   /** A picture beside the text. `halo` gives it the gold treatment (Palampur). */
-  shot?: { src: string; alt: string; caption?: string; halo?: boolean };
+  shot?: { src: string; alt: string; caption?: string; halo?: boolean; w?: number; h?: number };
 };
 export type Site = {
   intro: { title: string; hint: string };
@@ -54,7 +54,7 @@ export type Site = {
   };
   story: { heading: string; label: string; beats: Beat[] };
   films: { heading: string; label: string; feature: Video; shorts: Video[] };
-  closing: { label: string; title: string };
+  closing: { label: string; title: string; resume: string };
   footer: { left: string; right: string };
 };
 

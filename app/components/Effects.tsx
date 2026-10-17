@@ -51,6 +51,33 @@ export default function Effects() {
       rv.forEach((el) => el.classList.add("in"));
     }
 
+    // In-page links (nav, "the full story is in the work"): smooth-scroll, then once the scroll settles,
+    // finish the trip if anything above shifted on the way (images loading, the hero's measured height).
+    const pad = () => parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+    let settle: ReturnType<typeof setTimeout> | undefined;
+    const onLink = (e: MouseEvent) => {
+      const a = (e.target as Element).closest?.('a[href^="#"]') as HTMLAnchorElement | null;
+      const id = a?.getAttribute("href")!.slice(1);
+      const target = id ? document.getElementById(id) : null;
+      if (!a || !target || e.defaultPrevented || e.metaKey || e.ctrlKey) return;
+      e.preventDefault();
+      history.pushState(null, "", `#${id}`);
+      const behavior: ScrollBehavior = reduce ? "auto" : "smooth";
+      target.scrollIntoView({ behavior });
+      let last = -1, tries = 0;
+      clearTimeout(settle);
+      const check = () => {
+        const y = scrollY;
+        if (y !== last) { last = y; settle = setTimeout(check, 180); return; }   // still moving
+        const off = target.getBoundingClientRect().top - pad();
+        const atEnd = y >= document.documentElement.scrollHeight - innerHeight - 2;
+        if (Math.abs(off) > 6 && !atEnd && tries++ < 3) { target.scrollIntoView({ behavior }); last = -1; settle = setTimeout(check, 180); }
+      };
+      settle = setTimeout(check, 180);
+    };
+    document.addEventListener("click", onLink);
+    cleanups.push(() => { document.removeEventListener("click", onLink); clearTimeout(settle); });
+
     // grain: one still, faint frame (no flicker)
     const c = canvasRef.current;
     const x = c?.getContext("2d");

@@ -284,7 +284,9 @@
           "src": "/films/with-ilaiyaraaja.jpg",
           "alt": "Senthil Vinu and Vishnu Sanjay with Maestro Ilaiyaraaja in the studio",
           "caption": "With Maestro Ilaiyaraaja, in the studio.",
-          "halo": true
+          "halo": true,
+          "w": 2400,
+          "h": 1606
         },
         "ctas": [
           {
@@ -331,7 +333,9 @@
         "shot": {
           "src": "/story/mellow-stickers.jpg",
           "alt": "A spread of Mellow stickers: Less Goo, Slay!, Wut?, OMG, Srsly and others",
-          "caption": "A few from the Mellow sticker sets."
+          "caption": "A few from the Mellow sticker sets.",
+          "w": 1067,
+          "h": 675
         }
       },
       {
@@ -450,7 +454,8 @@
   },
   "closing": {
     "label": "That's a wrap",
-    "title": "Let's make\n{the next one}"
+    "title": "Let's make\n{the next one}",
+    "resume": "Download Resume"
   },
   "footer": {
     "left": "Vishnu Sanjay · Creative Director",

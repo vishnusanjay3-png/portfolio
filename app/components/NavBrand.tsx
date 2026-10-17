@@ -6,7 +6,7 @@ import { clap, unlock } from "@/app/lib/clap";
 import { site } from "@/app/lib/content";
 
 // One scene per part of the page, in order; the slate shows the one in the middle of the screen.
-const SECTIONS = ["#top", "#work", "#story", "#films", ".end"];
+const SECTIONS = ["#top", "#work", "#story", "#films", "#contact"];
 const CLAP_MS = 320;
 const IMPACT_S = 0.23; // when the arm meets the slate in the `clap` keyframes
 

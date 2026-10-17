@@ -49,7 +49,7 @@ export default function Backstory() {
                 </div>
                 {b.shot && (
                   <figure className={b.shot.halo ? "beat-shot halo-shot" : "beat-shot"}>
-                    <img src={b.shot.src} alt={b.shot.alt} loading="lazy" />
+                    <img src={b.shot.src} alt={b.shot.alt} width={b.shot.w} height={b.shot.h} loading="lazy" />
                     {b.shot.caption && <figcaption className="label">{b.shot.caption}</figcaption>}
                   </figure>
                 )}

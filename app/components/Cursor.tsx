@@ -11,6 +11,7 @@ const LABELS: [string, string][] = [
   [".intro", "Roll"],
   [".reel button, .post-play, a.thumb:not(.post)", "Play"],
   [".card", "Open"],
+  ["a[download]", "Save ↓"],
   ["a[target=_blank]", "Visit ↗"],
 ];
 

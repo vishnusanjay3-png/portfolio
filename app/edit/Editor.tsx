@@ -10,7 +10,7 @@ type Obj = { [k: string]: Json };
 type Path = (string | number)[];
 
 // Not writing: links, images, ids and colours stay out of the form.
-const SKIP = new Set(["href", "logo", "brand", "img", "video", "src", "id", "tint", "art", "mark", "halo"]);
+const SKIP = new Set(["href", "logo", "brand", "img", "video", "src", "id", "tint", "art", "mark", "halo", "w", "h"]);
 
 const SECTIONS: [string, string][] = [
   ["intro", "Intro"], ["nav", "Nav slate"], ["hero", "Hero"], ["showreel", "Showreel"], ["crafts", "Crafts marquee"], ["work", "The work"],
@@ -27,7 +27,7 @@ const LABELS: Record<string, string> = {
   heading: "Heading", label: "Small label", readMore: "Card button", situation: "Story heading 1",
   numbersLabel: "Numbers label", stats: "Numbers", n: "Number", p: "What it counts",
   projects: "Projects", beats: "Rows", feature: "Feature film", shorts: "Shorts", items: "Posts",
-  left: "Left", right: "Right", slate: "Slate text", hint: "Hint under it",
+  left: "Left", right: "Right", slate: "Slate text", hint: "Hint under it", resume: "Resume button",
   scenes: "Scenes: top, work, backstory, films, closing",
 };
 
@@ -101,7 +101,7 @@ export default function Editor() {
     if (top === "work" && path[1] === "projects") el = doc.querySelectorAll(".card")[i as number] ?? null;
     else if (top === "work" && path[1] === "stats") el = doc.querySelector(".tally");
     else if (top === "story" && path[1] === "beats") el = doc.querySelectorAll(".beat2")[i as number] ?? null;
-    else el = doc.querySelector(({ hero: "#top", showreel: "#top", crafts: ".marquee", work: "#work", story: "#story", films: "#films", closing: ".end", footer: "footer" } as Record<string, string>)[top as string] ?? "#top");
+    else el = doc.querySelector(({ hero: "#top", showreel: "#top", crafts: ".marquee", work: "#work", story: "#story", films: "#films", closing: "#contact", footer: "footer" } as Record<string, string>)[top as string] ?? "#top");
     el?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 

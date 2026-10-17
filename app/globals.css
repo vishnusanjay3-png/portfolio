@@ -29,7 +29,7 @@ p{margin:0;max-width:62ch;color:#cfcdc7}
 
 /* nav + clapboard mark */
 nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px var(--gutter);background:rgba(12,12,13,.86);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex:1 1 auto;min-width:0;margin-right:clamp(16px,3vw,32px)}
 .brand-mark{display:block;flex:none;line-height:0}
 .clap{width:40px;height:36px;overflow:visible;flex:none}
 .clap .arm{transform-origin:3px 11px}
@@ -37,13 +37,14 @@ nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:40;di
 .clap.clapping .arm{animation:clap .32s cubic-bezier(.5,0,.3,1)}
 @keyframes clap{0%{transform:none}40%{transform:rotate(-30deg)}72%{transform:none}84%{transform:rotate(-4deg)}100%{transform:none}}
 /* the live slate: which scene of the page you're in */
-.slate{display:inline-flex;align-items:center;height:1.5em;overflow:hidden;color:var(--screen);white-space:nowrap}
+.slate{display:inline-flex;align-items:center;height:1.5em;min-width:0;overflow:hidden;color:var(--screen);white-space:nowrap}
 .slate b{font-weight:800;color:var(--safelight)}
-.slate-roll{display:inline-block;animation:slate .45s cubic-bezier(.2,.7,.2,1)}
+.slate-roll{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;animation:slate .45s cubic-bezier(.2,.7,.2,1)}
 @keyframes slate{from{transform:translateY(110%);opacity:0}to{transform:none;opacity:1}}
-.navlinks{display:flex;gap:clamp(14px,2.6vw,32px)}
+.navlinks{display:flex;flex:none;gap:clamp(14px,2.6vw,32px)}
 .navlinks a{text-decoration:none;transition:color .2s;padding-block:8px}
 @media (max-width:440px){.slate-t{display:none}.navlinks{gap:14px}}
+@media (max-width:410px){.slate{display:none}.navlinks{gap:clamp(10px,3.4vw,14px)}}
 .navlinks a:hover{color:var(--screen)}
 
 /* hero: title card + portrait; on wide screens it pins and the portrait grows into the showreel */
@@ -323,6 +324,13 @@ a:is(:hover,:focus-visible) .arr,button:is(:hover,:focus-visible) .arr{color:var
 .js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.track{animation:none}.js .rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.clap .arm{transition:none}}
+
+/* resume download: the one solid call to action on the page */
+.resume-cta{display:inline-flex;align-items:center;gap:10px;margin-top:clamp(28px,4vw,40px);min-height:48px;padding:0 24px;border-radius:999px;background:var(--safelight);color:var(--screen);text-decoration:none;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s,background-color .2s}
+.resume-cta svg{transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.resume-cta:is(:hover,:focus-visible){transform:translateY(-2px);box-shadow:0 14px 40px -12px rgba(210,58,46,.7)}
+.resume-cta:is(:hover,:focus-visible) svg{transform:translateY(2px)}
+.resume-cta:active{transform:none}
 
 /* intro: the clapboard title card. Click to roll; it claps, flies into the nav and the page comes in. */
 .intro{display:none}
