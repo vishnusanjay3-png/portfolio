@@ -6,8 +6,9 @@ import { clap, unlock } from "@/app/lib/clap";
 import { site } from "@/app/lib/content";
 
 /* The title card before the site: an open clapboard. Click (or Enter / Space) and it claps with sound,
-   flies into its place in the nav, and the page comes into frame. Plays once per browser session;
-   the head script in layout.tsx adds `booted landed skip-intro` straight away on later loads. */
+   flies into its place in the nav, and the page comes into frame. It plays on every visit: that click is
+   what lets the browser play the clap on every later hover. (Skipped only inside the /edit preview,
+   where layout.tsx's head script adds `booted landed skip-intro`.) */
 
 const SHUT_MS = 140;  // arm comes down
 const HOLD_MS = 240;  // beat after the clap before it flies
@@ -43,7 +44,6 @@ export default function Intro() {
 
     const finish = () => {
       root.classList.add("landed");
-      try { sessionStorage.setItem("rolled", "1"); } catch {}
       setGone(true);
     };
 

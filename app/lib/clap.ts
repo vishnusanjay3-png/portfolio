@@ -1,9 +1,10 @@
 /* The clapboard's clap, made with Web Audio: a bright noise snap plus a short wooden knock. No sound file.
-   Browsers only allow sound after the visitor has clicked, tapped or pressed a key, so `unlock()` runs
-   on the first such gesture; until then `clap()` stays silent. */
+   Browsers only allow sound after the visitor has clicked, tapped or pressed a key on the page (hover never
+   counts). The intro's "click to roll" is that gesture on every visit, and `unlock()` runs inside it. */
 
 let ctx: AudioContext | null = null;
 let noise: AudioBuffer | null = null;
+let unlocked = false;
 
 function context() {
   if (!ctx) {
@@ -20,16 +21,32 @@ function context() {
 /** Call from inside a click / tap / key handler. */
 export function unlock() {
   const c = context();
-  if (c && c.state !== "running") c.resume().catch(() => {});
+  if (!c) return;
+  unlocked = true;
+  if (c.state !== "running") c.resume().catch(() => {});
+  // iOS only opens the audio path once something actually plays inside the gesture: a silent blip.
+  const blip = c.createBufferSource();
+  blip.buffer = c.createBuffer(1, 1, c.sampleRate);
+  blip.connect(c.destination);
+  blip.start(0);
 }
 
 /** True once a gesture has unlocked sound. */
 export const canPlay = () => ctx?.state === "running";
 
-/** Play the clap. `at` delays it (seconds) so it can land on the arm's impact. */
+/** Play the clap. `at` delays it (seconds) so it can land on the arm's impact. Right after `unlock()`
+    the context may still be starting up, so wait for it rather than dropping the sound. */
 export function clap(at = 0, volume = 0.55) {
   const c = ctx;
-  if (!c || c.state !== "running" || !noise) return;
+  if (!c || !noise) return;
+  if (c.state === "running") play(c, at, volume);
+  else if (unlocked) {
+    const asked = performance.now();
+    c.resume().then(() => play(c, Math.max(0, at - (performance.now() - asked) / 1000), volume)).catch(() => {});
+  }
+}
+
+function play(c: AudioContext, at: number, volume: number) {
   const t = c.currentTime + at;
   const out = c.createGain();
   out.gain.value = volume;
@@ -63,4 +80,8 @@ export function clap(at = 0, volume = 0.55) {
   osc.connect(knock).connect(out);
   osc.start(t);
   osc.stop(t + 0.1);
+}
+
+if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
+  (window as unknown as { __clap?: object }).__clap = { state: () => ctx?.state ?? "none", unlocked: () => unlocked };
 }

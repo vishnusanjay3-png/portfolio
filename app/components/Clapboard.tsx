@@ -14,7 +14,8 @@ export default function Clapboard({ className = "", id }: { className?: string; 
         <rect x="2" y="13" width="36" height="4.5" fill="#ecebe7" />
         <path d="M8 13l-4 4.5M16 13l-4 4.5M24 13l-4 4.5M32 13l-4 4.5M40 13l-4 4.5" stroke="#0c0c0d" strokeWidth="2.4" />
       </g>
-      <image href="/logos/notsoflashy.png" x="7" y="18.2" width="26" height="15" preserveAspectRatio="xMidYMid meet" />
+      {/* centred on the slate face below the striped bar: x 3–37, y 17.5–33 */}
+      <image href="/logos/notsoflashy-mark.png" x="6" y="18.18" width="28" height="14.14" preserveAspectRatio="xMidYMid meet" />
       <g className="arm">
         <g clipPath={`url(#${clip})`}>
           <rect x="2" y="5" width="36" height="7" fill="#0c0c0d" />

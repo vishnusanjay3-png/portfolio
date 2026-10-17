@@ -16,12 +16,13 @@ export default function NavBrand() {
   const busy = useRef(false);
   const [scene, setScene] = useState(0);
 
-  // Sound needs one gesture anywhere on the page first.
+  // Any real gesture on the page switches sound on (the intro click normally already has).
+  // These are the events browsers count as a gesture: a mouse press, a finger lifting, a key.
   useEffect(() => {
-    const go = () => unlock();
-    addEventListener("pointerdown", go, { once: true });
-    addEventListener("keydown", go, { once: true });
-    return () => { removeEventListener("pointerdown", go); removeEventListener("keydown", go); };
+    const evs = ["mousedown", "pointerup", "touchend", "keydown"] as const;
+    const go = () => { unlock(); evs.forEach((e) => removeEventListener(e, go)); };
+    evs.forEach((e) => addEventListener(e, go));
+    return () => evs.forEach((e) => removeEventListener(e, go));
   }, []);
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export default function NavBrand() {
       href="#top"
       aria-label="Vishnu Sanjay, back to the top"
       onPointerEnter={(e) => { if (e.pointerType === "mouse") doClap(); }}
-      onPointerDown={(e) => { if (e.pointerType !== "mouse") { unlock(); doClap(); } }}
+      onPointerUp={(e) => { if (e.pointerType !== "mouse") { unlock(); doClap(); } }}
     >
       <span ref={svg} className="brand-mark"><Clapboard id="nav" /></span>
       <span className="slate label" aria-live="polite">
