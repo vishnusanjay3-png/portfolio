@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Vishnu Sanjay",
   description:
-    "Vishnu Sanjay, creative director. Writer, director, editor and photographer making founders, products and brands worth watching.",
+    "Vishnu Sanjay, creative director. Writer, director, editor, designer and photographer making founders, products and brands worth watching.",
   openGraph: {
     title: "Vishnu Sanjay · Creative Director",
     description: "Making founders, products and brands worth watching.",

@@ -51,37 +51,24 @@ export default function Effects() {
       rv.forEach((el) => el.classList.add("in"));
     }
 
-    // grain
+    // grain: one still, faint frame (no flicker)
     const c = canvasRef.current;
     const x = c?.getContext("2d");
     if (c && x) {
-      let frames: ImageData[] = [];
-      let i = 0;
       let resizeTimer: ReturnType<typeof setTimeout> | undefined;
       const size = () => {
-        const w = (c.width = Math.ceil(innerWidth / 2));
-        const h = (c.height = Math.ceil(innerHeight / 2));
-        frames = [];
-        for (let k = 0; k < 5; k++) {
-          const d = x.createImageData(w, h);
-          const a = d.data;
-          for (let j = 0; j < a.length; j += 4) {
-            const n = Math.random() * 255;
-            a[j] = a[j + 1] = a[j + 2] = n;
-            a[j + 3] = 255;
-          }
-          frames.push(d);
+        const d = x.createImageData((c.width = Math.ceil(innerWidth / 2)), (c.height = Math.ceil(innerHeight / 2)));
+        const a = d.data;
+        for (let j = 0; j < a.length; j += 4) {
+          a[j] = a[j + 1] = a[j + 2] = Math.random() * 255;
+          a[j + 3] = 255;
         }
-        x.putImageData(frames[0], 0, 0);
+        x.putImageData(d, 0, 0);
       };
       size();
       const onResize = () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(size, 200); };
       addEventListener("resize", onResize);
       cleanups.push(() => { removeEventListener("resize", onResize); clearTimeout(resizeTimer); });
-      if (!reduce) {
-        const id = setInterval(() => { i = (i + 1) % frames.length; x.putImageData(frames[i], 0, 0); }, 80);
-        cleanups.push(() => clearInterval(id));
-      }
     }
 
     return () => cleanups.forEach((fn) => fn());
