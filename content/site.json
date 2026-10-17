@@ -290,7 +290,7 @@
         "org": "NotSoFlashy",
         "role": "Freelance",
         "logo": "/logos/notsoflashy.png",
-        "body": "NotSoFlashy is my space. It cover branded photography, cinematography, scripts, voice-overs and edits: sometimes one of those, usually all of them. ",
+        "body": "NotSoFlashy is my space. It covers branded photography, cinematography, scripts, voice-overs and edits: sometimes one of those, usually all of them. ",
         "crafts": [
           "Photography",
           "DOP",
@@ -343,7 +343,7 @@
         "org": "Hermitcrabs",
         "role": "Brand Designer – Growth",
         "logo": "/logos/hermitcrabs.png",
-        "body": "Made event films, Announcements, Product walkthroughs, designed video assets,  content strategy and scripts.",
+        "body": "Made event films, Announcements, Product walkthroughs, designed video assets, content strategy and scripts.",
         "posts": [
           {
             "title": "Prialto",
@@ -392,13 +392,6 @@
             "href": "#work"
           }
         ]
-      },
-      {
-        "when": "whats next?",
-        "org": "More stories are to be written yet...",
-        "role": "Seriously...",
-        "mark": "→",
-        "body": "On set, for brands and for my own short films and series."
       }
     ]
   },
