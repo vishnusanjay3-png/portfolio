@@ -22,8 +22,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vishnu Sanjay · Creative Director",
     description: "Making founders, products and brands worth watching.",
-    images: ["/poster.jpg"],
+    // The link preview (WhatsApp, LinkedIn, iMessage, X…). 1200×630 card: name + portrait.
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Vishnu Sanjay, Creative Director" }],
+    url: "/",
+    siteName: "Vishnu Sanjay",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vishnu Sanjay · Creative Director",
+    description: "Making founders, products and brands worth watching.",
+    images: ["/og.jpg"],
   },
 };
 
