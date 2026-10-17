@@ -49,11 +49,11 @@ export default function Home() {
       <section className="end wrap" id="contact">
         <span className="label">{closing.label}</span>
         <h2 className="bill" style={{ marginTop: 22 }}>{rich(closing.title, "span")}</h2>
+        <Contact />
         <a className="resume-cta label" href="/resume.pdf" download="Vishnu-Sanjay-Resume.pdf">
           {closing.resume}
           <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </a>
-        <Contact />
       </section>
 
       <footer className="wrap label">
