@@ -147,7 +147,7 @@ export default function Work() {
                 <span className="big">{x.big}</span>
                 <span className="cap">{x.bigCaption}</span>
               </span>
-              <span className="more label">Read the story <span aria-hidden="true">→</span></span>
+              <span className="more label">Read the story <span className="arr" aria-hidden="true">→</span></span>
             </span>
           </button>
         ))}

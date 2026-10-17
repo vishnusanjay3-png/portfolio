@@ -1,8 +1,6 @@
-"use client";
-
-import { useState } from "react";
 import Ext from "./Ext";
 import Thumb, { type Video } from "./Thumb";
+import PostCard, { type Post } from "./Post";
 
 type Beat = {
   when: string;
@@ -13,8 +11,13 @@ type Beat = {
   body: string;
   crafts?: string[];
   videos?: Video[];
-  links?: { label: string; href: string; ext?: boolean }[];
-  halo?: { src: string; caption: string; tag: string };
+  posts?: Post[];
+  /** Pill buttons for the main external calls to action. */
+  ctas?: { label: string; href: string }[];
+  /** Small in-page links. */
+  links?: { label: string; href: string }[];
+  /** A picture beside the text. `halo` gives it the gold treatment (Palampur). */
+  shot?: { src: string; alt: string; caption?: string; halo?: boolean };
 };
 
 const beats: Beat[] = [
@@ -45,8 +48,11 @@ const beats: Beat[] = [
     role: "Assistant Creative Director",
     logo: "/logos/palampur.png",
     body: "On The Silent Prayer, a feature scored by Maestro Ilaiyaraaja. I led the storyboards, shaped the set, prop and visual direction, ran costume, art department and locations, and worked with the director and art team on the film's marketing. It premiered at the Red Lorry Film Festival.",
-    halo: { src: "/films/with-ilaiyaraaja.jpg", caption: "With Maestro Ilaiyaraaja, in the studio.", tag: "Music by Ilaiyaraaja" },
-    links: [{ label: "Watch The Silent Prayer on BookMyShow Stream", href: "https://in.bookmyshow.com/movies/mumbai/the-silent-prayer/ET00392620", ext: true }],
+    shot: { src: "/films/with-ilaiyaraaja.jpg", alt: "Vishnu Sanjay with Maestro Ilaiyaraaja in the studio", caption: "With Maestro Ilaiyaraaja, in the studio.", halo: true },
+    ctas: [
+      { label: "Watch the trailer", href: "https://www.youtube.com/watch?v=jyjW3q2A1As" },
+      { label: "Stream on BookMyShow", href: "https://in.bookmyshow.com/movies/mumbai/the-silent-prayer/ET00392620" },
+    ],
   },
   {
     when: "Aug 2023 → now",
@@ -66,6 +72,7 @@ const beats: Beat[] = [
     role: "Visual Designer",
     logo: "/logos/mellow.png",
     body: "Designed bright, playful sticker sets that became part of how people interact in the app.",
+    shot: { src: "/story/mellow-stickers.jpg", alt: "A spread of Mellow stickers: Less Goo, Slay!, Wut?, OMG, Srsly and others", caption: "A few from the Mellow sticker sets." },
   },
   {
     when: "Jun – Oct 2025",
@@ -73,7 +80,9 @@ const beats: Beat[] = [
     role: "Creative Head",
     logo: "/logos/grekam.png",
     body: "Ran the creative side of a learning academy in Coimbatore: the concepts for marketing and branding, the videos, the posters and social posts, and regular workshops to train the junior designers and interns.",
-    links: [{ label: "Watch a Grekam reel on Instagram", href: "https://www.instagram.com/reel/DLzXHuHMEt4/", ext: true }],
+    posts: [
+      { title: "Contrast", platform: "Instagram", note: "A design-principles reel for Grekam", href: "https://www.instagram.com/reel/DLzXHuHMEt4/", art: "contrast" },
+    ],
   },
   {
     when: "Aug 2025 → now",
@@ -81,11 +90,11 @@ const beats: Beat[] = [
     role: "Brand Designer – Growth",
     logo: "/logos/hermitcrabs.png",
     body: "Started making the agency's films in August, the INBOUND 2025 film among them, and joined full time in October as Brand Designer on the growth team. It's also where the work with Miles began.",
-    links: [
-      { label: "LinkedIn post", href: "https://lnkd.in/p/gzDd2HGC", ext: true },
-      { label: "LinkedIn post", href: "https://lnkd.in/p/gtrFx7kp", ext: true },
-      { label: "The full story is in the work", href: "#work" },
+    posts: [
+      { title: "Prialto", platform: "LinkedIn", note: "Client portal walkthrough", href: "https://lnkd.in/p/gzDd2HGC", img: "/story/prialto.jpg" },
+      { title: "HubCat portal", platform: "LinkedIn", note: "Project portal walkthrough", href: "https://lnkd.in/p/gtrFx7kp", img: "/story/hubcat.jpg" },
     ],
+    links: [{ label: "The full story is in the work", href: "#work" }],
   },
   {
     when: "Jun 2026 → now",
@@ -93,6 +102,9 @@ const beats: Beat[] = [
     role: "Brand Designer",
     logo: "/logos/forward-company.png",
     body: "Campaign ideas, poster designs, launch videos and LinkedIn copy for a new AI-first agency, from launch day.",
+    posts: [
+      { title: "Launch film", platform: "Forward Company", note: "The launch video · 0:36", video: "/story/fc-launch.mp4", img: "/story/fc-launch.jpg", tint: { bg: "#def649", ink: "#2321ff" } },
+    ],
     links: [{ label: "The full story is in the work", href: "#work" }],
   },
   {
@@ -105,15 +117,6 @@ const beats: Beat[] = [
 ];
 
 export default function Backstory() {
-  const [open, setOpen] = useState<Set<number>>(new Set());
-  const toggle = (i: number) =>
-    setOpen((s) => {
-      const n = new Set(s);
-      if (n.has(i)) n.delete(i);
-      else n.add(i);
-      return n;
-    });
-
   return (
     <section className="wrap" id="story">
       <div className="head rv">
@@ -121,53 +124,56 @@ export default function Backstory() {
         <span className="label">How it led here</span>
       </div>
       <ol className="beats">
-        {beats.map((b, i) => {
-          const isOpen = open.has(i);
-          return (
-            <li key={b.org} className={b.halo ? "beat2 rv halo" : "beat2 rv"} data-open={isOpen || undefined}>
-              <button type="button" className="beat-head" aria-expanded={isOpen} aria-controls={`beat-${i}`} onClick={() => toggle(i)}>
-                <span className="label when">{b.when}</span>
-                <span className="mark">{b.logo ? <img src={b.logo} alt="" /> : <span className="mono">{b.mark}</span>}</span>
-                <span className="who">
-                  <span className="org">{b.org}</span>
-                  <span className="role">{b.role}</span>
-                </span>
-                {b.halo && <span className="label halo-tag">{b.halo.tag}</span>}
-                <span className="pm" aria-hidden="true" />
-              </button>
-              <div className="beat-body" id={`beat-${i}`} role="region" aria-label={b.org} inert={!isOpen}>
-                <div className="beat-inner">
-                  <div className={b.halo ? "beat-grid with-halo" : "beat-grid"}>
-                    <div className="beat-text">
-                      <p>{b.body}</p>
-                      {b.crafts && <div className="credits label">{b.crafts.map((c) => <span key={c}>{c}</span>)}</div>}
-                      {b.links && (
-                        <div className="beat-links">
-                          {b.links.map((l) => (
-                            <a key={l.href} className="label" href={l.href} {...(l.ext ? { target: "_blank", rel: "noopener" } : {})}>
-                              {l.label} {l.ext ? <Ext /> : <span aria-hidden="true">→</span>}
-                            </a>
-                          ))}
-                        </div>
-                      )}
+        {beats.map((b) => (
+          <li key={b.org} className={b.shot?.halo ? "beat2 rv halo" : "beat2 rv"}>
+            <div className="beat-head">
+              <span className="label when">{b.when}</span>
+              <span className="mark">{b.logo ? <img src={b.logo} alt="" /> : <span className="mono">{b.mark}</span>}</span>
+              <h3 className="who">
+                <span className="org">{b.org}</span>
+                <span className="role">{b.role}</span>
+              </h3>
+            </div>
+            <div className="beat-body">
+              <div className={b.shot ? "beat-grid with-shot" : "beat-grid"}>
+                <div className="beat-text">
+                  <p>{b.body}</p>
+                  {b.crafts && <div className="credits label">{b.crafts.map((c) => <span key={c}>{c}</span>)}</div>}
+                  {b.ctas && (
+                    <div className="ctas">
+                      {b.ctas.map((c) => (
+                        <a key={c.href} className="cta label" href={c.href} target="_blank" rel="noopener">
+                          {c.label}<Ext />
+                        </a>
+                      ))}
                     </div>
-                    {b.halo && (
-                      <figure className="halo-shot">
-                        <img src={b.halo.src} alt="Vishnu Sanjay with Maestro Ilaiyaraaja in the studio" loading="lazy" />
-                        <figcaption className="label">{b.halo.caption}</figcaption>
-                      </figure>
-                    )}
-                  </div>
-                  {b.videos && (
-                    <div className="thumbs">
-                      {b.videos.map((v) => <Thumb key={v.id} v={v} />)}
+                  )}
+                  {b.links && (
+                    <div className="beat-links">
+                      {b.links.map((l) => (
+                        <a key={l.href} className="label" href={l.href}>
+                          {l.label} <span className="arr" aria-hidden="true">→</span>
+                        </a>
+                      ))}
                     </div>
                   )}
                 </div>
+                {b.shot && (
+                  <figure className={b.shot.halo ? "beat-shot halo-shot" : "beat-shot"}>
+                    <img src={b.shot.src} alt={b.shot.alt} loading="lazy" />
+                    {b.shot.caption && <figcaption className="label">{b.shot.caption}</figcaption>}
+                  </figure>
+                )}
               </div>
-            </li>
-          );
-        })}
+              {(b.videos || b.posts) && (
+                <div className="thumbs">
+                  {b.videos?.map((v) => <Thumb key={v.id} v={v} />)}
+                  {b.posts?.map((p) => <PostCard key={p.title} p={p} />)}
+                </div>
+              )}
+            </div>
+          </li>
+        ))}
       </ol>
     </section>
   );
