@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={archivo.variable} suppressHydrationWarning>
       <head>
         {/* Hide reveal-on-scroll elements only once JS is known to run */}
-        <script dangerouslySetInnerHTML={{ __html: "var c=document.documentElement.classList;c.add('js');try{if(sessionStorage.getItem('rolled'))c.add('booted','landed','skip-intro')}catch(e){}" }} />
+        <script dangerouslySetInnerHTML={{ __html: "var c=document.documentElement.classList;c.add('js');try{if(sessionStorage.getItem('rolled')||window.top!==window)c.add('booted','landed','skip-intro')}catch(e){}" }} />
       </head>
       <body>{children}</body>
     </html>

@@ -50,8 +50,8 @@
         "name": "Miles Ukaoma",
         "meta": "Founder brand · LinkedIn · Podcast · Aug 2025 → present",
         "hook": "A former Olympian turned AI thought leader. ",
-        "big": "7K +",
-        "bigCaption": "new followers, and counting",
+        "big": "4.2k{→}11.4K ",
+        "bigCaption": "followers, and counting",
         "brief": "A Rio 2016 Olympian and SVP of Marketing at Quilt with a sharp mind, great stories, and even greater ideas. The job was to put out content that speaks to his target audience and bring in people who wants to learn, build a and educate themselves on AI.",
         "did": [
           {
@@ -111,8 +111,8 @@
         "name": "GotCOS",
         "meta": "Product launch · 2026",
         "hook": "An open-source AI chief of staff (COS) that is constantly being upgraded with new wearable techs.",
-        "big": "350+",
-        "bigCaption": "have signed up and started using the app.",
+        "big": "20{→}350+",
+        "bigCaption": "users have signed up and started using the app.",
         "brief": "An open-source AI chief of staff, built by an Olympian. Isn't that intriguing? What's special about this is that it is not just a software that helps keep track of your work and meetings. It is your personal assistant that prepares ahead of your schedules. Combined with wearable tech, the goal is to make productivity much, much more efficient.",
         "did": [
           {
@@ -144,7 +144,7 @@
         "meta": "HubSpot agency · Aug 2025 → Oct 2026",
         "hook": "300+ websites built and almost nothing on camera. Fixed that.",
         "big": "Product showcase{·}Walk-throughs{·}Launch Teasers{·}Event Films",
-        "bigCaption": "two years running",
+        "bigCaption": "2 years running",
         "brief": "A HubSpot CMS development and design agency with 300+ websites behind it. Phenomenal work and the amazing people behind the company needs to be seen.",
         "did": [
           {
@@ -160,7 +160,7 @@
             "body": "Every company has one strong aspect. Its employees are its talent and spokesperson. Came up with campaigns that focuses on content that highlights the people behind the output given to satisfied clients."
           }
         ],
-        "result": "The agency's people and work displayed for the audience to infer and create an opening for potential leads.",
+        "result": "Elevating the agency’s brand presence by showcasing impactful work, highlighting its unique culture, building credibility with potential clients, and converting audience engagement into qualified leads and new business opportunities.",
         "credits": [
           "Concept",
           "Script",
@@ -184,18 +184,18 @@
         "did": [
           {
             "title": "Campaign ideas",
-            "body": "Intense research on multiple agencies were made for analysis and came up with the campaigns the agency launched with and their positioning."
+            "body": "Conducted in-depth competitive research across multiple agencies to analyse their positioning, campaign strategies, and creative approaches, translating key insights into strategic campaigns that strengthened the agency’s market positioning and brand differentiation."
           },
           {
-            "title": "Poster designs and write-ups",
-            "body": "Created eye-catching posters following the brand identity and wrote posts respectively for them."
+            "title": "Promotional posters and content",
+            "body": "Created eye-catching posters following the brand identity and planned the content calendar post launch."
           },
           {
             "title": "Launch videos",
-            "body": "Scripted and edited the videos that introduce the company."
+            "body": "Owned the end-to-end creative process, from conceptualisation and scripting to editing, crafting company introduction videos that communicate the brand’s identity, values, and vision while establishing a compelling first impression with potential clients."
           }
         ],
-        "result": "A brand with a story, a look and a voice from day one.",
+        "result": "A cohesive brand identity and a clear market presence, establishing the agency’s voice, communicating its value proposition, and creating a strong foundation for brand recognition and client acquisition.",
         "credits": [
           "Campaign ideas",
           "Poster design",
@@ -212,24 +212,24 @@
     "numbersLabel": "The numbers",
     "stats": [
       {
-        "n": "{~}8K",
-        "p": "New followers grown."
+        "n": "4.2K{→}11.3K{+}",
+        "p": "3x new followers grown"
       },
       {
         "n": "{~}30K",
-        "p": "Impressions."
+        "p": "Impressions"
       },
       {
         "n": "350{+}",
-        "p": "New sign-ups and counting."
+        "p": "New sign-ups and counting"
       },
       {
         "n": "50{+}",
-        "p": "Pieces of content shared."
+        "p": "Pieces of content shared"
       },
       {
-        "n": "5",
-        "p": "Campaigns live across the brands."
+        "n": "15",
+        "p": "Successful campaigns live"
       }
     ]
   },
@@ -242,7 +242,7 @@
         "org": "Clusters Institute",
         "role": "Visual Communication",
         "logo": "/logos/clusters.png",
-        "body": "Three years of photography, film and video production specialization at the Clusters Institute of Media and Technology, Coimbatore. On the side: shooting and modeling for clothing brands, and writing, directing, dubbing and acting on shorts, features and ad films.",
+        "body": "Three years of photography, film and video production specialization at the Clusters Institute of Media and Technology, Coimbatore. On the side: shooting and modeling for clothing brands, while writing, directing, dubbing and acting on shorts, features and ad films.",
         "links": [
           {
             "label": "See the films",
@@ -303,7 +303,7 @@
         "org": "NotSoFlashy",
         "role": "Freelance",
         "logo": "/logos/notsoflashy.png",
-        "body": "NotSoFlashy is my space. It covers branded photography, cinematography, scripts, voice-overs and edits: sometimes one of those, usually all of them. ",
+        "body": "NotSoFlashy is my creative space for branded photography, cinematography, scripting, voice-overs, and editing. Sometimes one of those, usually all of them.",
         "crafts": [
           "Photography",
           "DOP",
@@ -356,7 +356,7 @@
         "org": "Hermitcrabs",
         "role": "Brand Designer – Growth",
         "logo": "/logos/hermitcrabs.png",
-        "body": "Made event films, Announcements, Product walkthroughs, designed video assets, content strategy and scripts.",
+        "body": "Led content creation across event films, product announcements, and product walkthroughs, while developing video assets, content strategies, and scripts to strengthen the agency's brand communication.",
         "posts": [
           {
             "title": "Prialto",
@@ -385,7 +385,7 @@
         "org": "Forward Company",
         "role": "Brand Designer",
         "logo": "/logos/forward-company.png",
-        "body": "Campaign ideas, poster designs, launch videos and LinkedIn copy for a new AI-first agency, from launch day.",
+        "body": "Developed campaign concepts, designed promotional creatives, produced launch videos, and crafted LinkedIn copy to establish the AI-first agency’s brand identity, communicate its positioning, and build a cohesive digital presence from day one.",
         "posts": [
           {
             "title": "Launch film",
