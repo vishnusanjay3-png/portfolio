@@ -13,7 +13,7 @@ type Path = (string | number)[];
 const SKIP = new Set(["href", "logo", "brand", "img", "video", "src", "id", "tint", "art", "mark", "halo"]);
 
 const SECTIONS: [string, string][] = [
-  ["hero", "Hero"], ["showreel", "Showreel"], ["crafts", "Crafts marquee"], ["work", "The work"],
+  ["intro", "Intro"], ["nav", "Nav slate"], ["hero", "Hero"], ["showreel", "Showreel"], ["crafts", "Crafts marquee"], ["work", "The work"],
   ["story", "Backstory"], ["films", "Films"], ["closing", "Closing"], ["footer", "Footer"],
 ];
 
@@ -27,7 +27,8 @@ const LABELS: Record<string, string> = {
   heading: "Heading", label: "Small label", readMore: "Card button", situation: "Story heading 1",
   numbersLabel: "Numbers label", stats: "Numbers", n: "Number", p: "What it counts",
   projects: "Projects", beats: "Rows", feature: "Feature film", shorts: "Shorts", items: "Posts",
-  left: "Left", right: "Right", slate: "Slate text",
+  left: "Left", right: "Right", slate: "Slate text", hint: "Hint under it",
+  scenes: "Scenes: top, work, backstory, films, closing",
 };
 
 // The story dialog's three headings share keys with project fields, so name them by place.

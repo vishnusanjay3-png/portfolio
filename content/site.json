@@ -1,4 +1,17 @@
 {
+  "intro": {
+    "title": "Vishnu Sanjay · Portfolio",
+    "hint": "Click to roll"
+  },
+  "nav": {
+    "scenes": [
+      "SC 01 · Title card",
+      "SC 02 · The work",
+      "SC 03 · Backstory",
+      "SC 04 · Films",
+      "SC 05 · That's a wrap"
+    ]
+  },
   "hero": {
     "eyebrow": "Creative {Director}",
     "lead": "I make things worth watching.",

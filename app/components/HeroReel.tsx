@@ -17,7 +17,7 @@ export default function HeroReel({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const el = stage.current, st = sticky.current, s = slot.current;
     if (!el || !st || !s) return;
-    const mq = matchMedia("(min-width: 900px) and (prefers-reduced-motion: no-preference)");
+    const mq = matchMedia("(prefers-reduced-motion: no-preference)");
     const video = el.querySelector("video");
     let raf = 0;
 

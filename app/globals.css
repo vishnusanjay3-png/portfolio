@@ -30,13 +30,20 @@ p{margin:0;max-width:62ch;color:#cfcdc7}
 /* nav + clapboard mark */
 nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px var(--gutter);background:rgba(12,12,13,.86);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
-.brand .name{font-stretch:62%;font-weight:800;font-size:20px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.brand-mark{display:block;flex:none;line-height:0}
 .clap{width:40px;height:36px;overflow:visible;flex:none}
-.clap .arm{transform-origin:3px 11px;transition:transform .18s cubic-bezier(.5,0,.3,1)}
-.brand:hover .clap .arm,.clap.snap .arm{transform:rotate(-24deg)}
+.clap .arm{transform-origin:3px 11px}
+.clap.open .arm{transform:rotate(-28deg)}
+.clap.clapping .arm{animation:clap .32s cubic-bezier(.5,0,.3,1)}
+@keyframes clap{0%{transform:none}40%{transform:rotate(-30deg)}72%{transform:none}84%{transform:rotate(-4deg)}100%{transform:none}}
+/* the live slate: which scene of the page you're in */
+.slate{display:inline-flex;align-items:center;height:1.5em;overflow:hidden;color:var(--screen);white-space:nowrap}
+.slate b{font-weight:800;color:var(--safelight)}
+.slate-roll{display:inline-block;animation:slate .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes slate{from{transform:translateY(110%);opacity:0}to{transform:none;opacity:1}}
 .navlinks{display:flex;gap:clamp(14px,2.6vw,32px)}
 .navlinks a{text-decoration:none;transition:color .2s;padding-block:8px}
-@media (max-width:400px){.brand .name{display:none}.navlinks{gap:14px}}
+@media (max-width:440px){.slate-t{display:none}.navlinks{gap:14px}}
 .navlinks a:hover{color:var(--screen)}
 
 /* hero: title card + portrait; on wide screens it pins and the portrait grows into the showreel */
@@ -45,14 +52,15 @@ nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:40;di
 .hero .eyebrow{font-size:clamp(28px,3.4vw,46px);line-height:.92}
 .hero .eyebrow em{font-style:normal;color:var(--safelight)}
 .hero h1{font-size:clamp(64px,17vw,232px);margin-top:clamp(14px,1.6vw,22px)}
-.hero h1 span{display:block;color:transparent;-webkit-text-stroke:1.5px var(--screen)}
+.hero h1 .ln{display:block}
+.hero h1 .out{color:transparent;-webkit-text-stroke:1.5px var(--screen)}
 .hero .lead{font-stretch:87%;font-weight:600;font-size:clamp(24px,2.5vw,34px);line-height:1.15;color:var(--screen);margin-top:clamp(24px,3vw,40px)}
 .hero .lead+p{font-size:clamp(17px,1.4vw,19px);margin-top:12px;max-width:46ch}
 .hero-slot img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:50% 40%;border:1px solid var(--line);border-radius:var(--radius)}
 .morph-portrait,.cue{display:none}
 @media (max-width:899px){.hero-grid{grid-template-columns:1fr}.hero-slot{max-width:440px}}
 @media (min-width:900px){.hero h1{font-size:clamp(80px,11.5vw,176px)}}
-@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+@media (prefers-reduced-motion:no-preference){
   .js .hero{padding-top:0;height:250vh;position:relative}
   .js .hero-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
   .js .hero-grid{height:100%;padding-top:72px}
@@ -70,6 +78,20 @@ nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:40;di
     opacity:clamp(0,calc((.65 - var(--p,0)) / .3),1)}
   .js .hero:not(.full) .reel button{pointer-events:none}
   .js .cue{display:block;position:absolute;left:var(--gutter);bottom:28px;opacity:calc(1 - var(--p,0) * 5)}
+}
+/* phones: copy on top, the portrait takes the room left below it, then grows into the 16:9 reel */
+@media (max-width:899px) and (prefers-reduced-motion:no-preference){
+  .js .hero-grid{grid-template-rows:auto minmax(0,1fr);align-content:stretch;gap:18px;padding-top:84px;padding-bottom:60px}
+  .js .hero-slot{justify-self:center;align-self:stretch;height:100%;max-height:460px;min-height:0;max-width:none}
+  .js .hero .lead{margin-top:16px}
+  .js .cue{bottom:20px}
+}
+/* short phones: give the portrait room. The name scales to the screen height and the intro line steps aside. */
+@media (max-width:899px) and (max-height:720px) and (prefers-reduced-motion:no-preference){
+  .js .hero h1{font-size:clamp(46px,min(17vw,10svh),120px)}
+  .js .hero .eyebrow{font-size:clamp(22px,4.4svh,34px)}
+  .js .hero .lead{font-size:clamp(19px,3.4svh,24px)}
+  .js .hero .lead+p{display:none}
 }
 
 /* showreel */
@@ -310,3 +332,72 @@ a:is(:hover,:focus-visible) .arr,button:is(:hover,:focus-visible) .arr{color:var
 .js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.track{animation:none}.js .rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.clap .arm{transition:none}}
+
+/* intro: the clapboard title card. Click to roll; it claps, flies into the nav and the page comes in. */
+.intro{display:none}
+.js .intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;width:100%;margin:0;padding:24px;border:0;border-radius:0;background:var(--black);color:var(--screen);font:inherit;cursor:pointer;transition:background-color .6s ease}
+.js.skip-intro .intro{display:none}
+.js:not(.booted) body{overflow:hidden}
+.intro::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 46%,rgba(236,235,231,.06),transparent 70%);transition:opacity .5s}
+.intro:focus-visible{outline:none}
+.intro:focus-visible .intro-hint{color:var(--screen)}
+.intro-stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:clamp(18px,3vw,28px)}
+.intro-mark{display:block;width:min(62vw,320px,calc((100svh - 190px) * 1.11));transform-origin:0 0;will-change:transform}
+.intro-mark .clap{display:block;width:100%;height:auto}
+.intro-title{font-size:clamp(22px,3.4vw,36px);line-height:1;text-align:center;transition:opacity .25s,transform .4s}
+.intro-hint{display:inline-flex;align-items:center;gap:10px;transition:opacity .25s,color .2s}
+.intro-hint::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--safelight);animation:rec 1.4s ease-in-out infinite}
+@keyframes rec{50%{opacity:.25}}
+.intro:hover .intro-hint{color:var(--screen)}
+.intro .clap.shut .arm{animation:shut .14s cubic-bezier(.7,0,.9,.5) forwards}
+@keyframes shut{from{transform:rotate(-28deg)}to{transform:none}}
+.intro.rolled .intro-mark .clap{animation:jolt .32s .12s ease-out}
+@keyframes jolt{30%{transform:translateY(3%) scale(.985)}}
+.intro.rolled .intro-hint,.intro.rolled .intro-title{opacity:0;transform:translateY(8px)}
+.intro.flying,.intro.fade{background-color:transparent;pointer-events:none}
+.intro.flying::before,.intro.fade::before{opacity:0}
+.intro.fade{opacity:0;transition:opacity .35s}
+.js:not(.landed) .brand-mark{opacity:0}
+
+/* entrance: after the clap the title card assembles in one sequence */
+@media (prefers-reduced-motion:no-preference){
+  .booted nav{animation:fadeIn .6s ease both}
+  .booted .navlinks a{animation:dropIn .6s cubic-bezier(.2,.7,.2,1) both}
+  .booted .navlinks a:nth-child(1){animation-delay:.25s}
+  .booted .navlinks a:nth-child(2){animation-delay:.32s}
+  .booted .navlinks a:nth-child(3){animation-delay:.39s}
+  .booted .slate{animation:fadeIn .5s .55s ease both}
+  .booted .hero .eyebrow{animation:wipe .8s .2s cubic-bezier(.7,0,.2,1) both}
+  .booted .hero h1 .ln{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+  .booted .hero h1 .ln:nth-child(1){animation-delay:.32s}
+  .booted .hero h1 .ln:nth-child(2){animation-delay:.44s}
+  .booted .hero-slot img,.booted .morph{animation:develop 1.5s .35s ease-out both}
+  .booted .hero .lead{animation:rise .8s .7s cubic-bezier(.2,.7,.2,1) both}
+  .booted .hero .lead+p{animation:rise .8s .8s cubic-bezier(.2,.7,.2,1) both}
+  .booted .cue{animation:fadeIn .6s 1.2s ease both}
+  .booted .marquee{animation:fadeIn .8s 1s ease both}
+}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes dropIn{from{opacity:0;transform:translateY(-10px)}}
+@keyframes rise{from{opacity:0;transform:translateY(30%)}}
+@keyframes wipe{from{clip-path:inset(-30% 100% -30% 0)}to{clip-path:inset(-30% -30% -30% 0)}}
+/* a print developing: dark, then up through contrast to normal */
+@keyframes develop{from{filter:brightness(0) contrast(1.6)}55%{filter:brightness(.7) contrast(1.25)}to{filter:none}}
+
+/* "Director": a light sweep and a brief glow every few seconds */
+.hero .eyebrow em{background:linear-gradient(100deg,var(--safelight) 0 40%,#ffd9cc 50%,var(--safelight) 60% 100%);background-size:300% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent}
+@media (prefers-reduced-motion:no-preference){
+  .hero .eyebrow em{animation:sweep 7s 2.6s ease-in-out infinite}
+}
+@keyframes sweep{0%,70%{background-position:100% 0;filter:none}84%{filter:drop-shadow(0 0 14px rgba(210,58,46,.6))}100%{background-position:0 0;filter:none}}
+
+/* cursor: safelight torch + a ring that labels what you're pointing at (mouse only; see Cursor.tsx) */
+.torch,.cursor-ring{display:none}
+.has-cursor .torch{display:block;position:fixed;left:0;top:0;z-index:1;width:680px;height:680px;margin:-340px 0 0 -340px;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(210,58,46,.11),rgba(210,58,46,.045) 45%,transparent);mix-blend-mode:screen;opacity:0;transition:opacity .6s}
+.has-cursor .cursor-ring{display:grid;place-items:center;position:fixed;left:0;top:0;z-index:300;pointer-events:none;width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid rgba(236,235,231,.45);border-radius:999px;opacity:0;transition:opacity .3s,width .25s,height .25s,margin .25s,background-color .25s,border-color .25s,scale .15s}
+.has-cursor .torch.on,.has-cursor .cursor-ring.on{opacity:1}
+.cursor-ring[data-state=hover]{width:52px;height:52px;margin:-26px 0 0 -26px;border-color:var(--screen)}
+.cursor-ring[data-state=label]{width:84px;height:30px;margin:16px 0 0 12px;background:var(--safelight);border-color:var(--safelight)}
+.cursor-ring span{font-stretch:87%;font-weight:700;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--screen);white-space:nowrap;opacity:0;transition:opacity .2s}
+.cursor-ring[data-state=label] span{opacity:1}
+.cursor-ring.down{scale:.85}

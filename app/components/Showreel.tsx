@@ -24,7 +24,7 @@ export default function Showreel() {
       <video
         ref={vid}
         src="/intro.mp4"
-        poster="/poster.jpg"
+        poster="/showreel-cover.jpg"
         preload="metadata"
         playsInline
         controls={playing}

@@ -1,5 +1,7 @@
 import Effects from "./components/Effects";
-import Clapboard from "./components/Clapboard";
+import NavBrand from "./components/NavBrand";
+import Intro from "./components/Intro";
+import Cursor from "./components/Cursor";
 import HeroReel from "./components/HeroReel";
 import Contact from "./components/Contact";
 import Work from "./components/Work";
@@ -9,17 +11,15 @@ import { site, rich } from "./lib/content";
 
 const { hero, crafts, closing, footer } = site;
 
-
 export default function Home() {
   return (
     <>
+      <Intro />
       <Effects />
+      <Cursor />
 
       <nav>
-        <a className="brand" href="#top" aria-label="Vishnu Sanjay, home">
-          <Clapboard />
-          <span className="name">Vishnu Sanjay</span>
-        </a>
+        <NavBrand />
         <div className="navlinks label">
           <a href="#work">Work</a>
           <a href="#story">Story</a>
@@ -29,7 +29,7 @@ export default function Home() {
 
       <HeroReel>
         <div className="bill eyebrow">{rich(hero.eyebrow, "em")}</div>
-        <h1 className="bill">Vishnu<span>Sanjay</span></h1>
+        <h1 className="bill"><span className="ln">Vishnu</span><span className="ln out">Sanjay</span></h1>
         <p className="lead">{hero.lead}</p>
         <p>{hero.intro}</p>
       </HeroReel>
