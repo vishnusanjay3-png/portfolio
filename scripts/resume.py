@@ -15,12 +15,13 @@ OUT = Path(__file__).resolve().parent.parent / "public" / "resume.pdf"
 
 NAME = "Vishnu Sanjay"
 HEADLINE = "Creative Director | Brand Designer | Content Strategist"
+# (shown text, link). Email and phone stay readable as text; web links are named, not pasted URLs.
 CONTACT = [
-    "vishnu.sanjay3@gmail.com",
-    "+91 87540 69029",
-    "linkedin.com/in/aham-v",
-    "vishnusanjay-port.vercel.app",
-    "youtube.com/@vizsan3",
+    ("vishnu.sanjay3@gmail.com", "mailto:vishnu.sanjay3@gmail.com"),
+    ("+91 87540 69029", "tel:+918754069029"),
+    ("LinkedIn", "https://www.linkedin.com/in/aham-v/"),
+    ("Portfolio Website", "https://vishnusanjay-port.vercel.app"),
+    ("YouTube", "https://www.youtube.com/@vizsan3"),
 ]
 
 SUMMARY = (
@@ -62,18 +63,32 @@ EXPERIENCE = [
      "Learning academy.",
      ["Led the creative side of the academy: marketing and branding concepts, videos, posters and social posts.",
       "Ran regular workshops to train junior designers and interns."]),
-    ("Visual Designer", "Mellow", "Jan 2025 – Jun 2025",
-     "",
-     ["Designed bright, playful sticker sets that became part of how people interact in the app."]),
+    ("Visual Designer (Contract)", "Mellow", "Jan 2025 – Jun 2025",
+     "Retrospective tool that helps remote teams reflect, celebrate wins and grow together.",
+     ["Created expressive, brand-aligned sticker sets that support async communication inside the product and "
+      "became part of how people interact in the app.",
+      "Designed for fun, delight and clarity, in line with Mellow's playful yet clean tone.",
+      "Understood and expanded the design language to create new visual extensions."]),
+    ("Product Designer (Contract)", "Freelance", "Jul 2024 – Present",
+     "Feedback management platform: a lightweight tool for upvoting, tagging and resolution tracking.",
+     ["Designed user flows and interfaces focused on usability.",
+      "Worked closely with the product manager and senior designer to refine ideas, adapt to user needs and "
+      "create a scalable, intuitive feedback experience.",
+      "Supported fast-paced iterations in a startup environment, shaping a simple, effective system for "
+      "capturing and managing user feedback."]),
     ("Freelance Creative", "NotSoFlashy", "Aug 2023 – Present",
      "Independent creative practice.",
      ["Branded photography, cinematography (DOP), scriptwriting, voice-overs, editing and graphic design for "
       "brands, often end to end from first idea to final file."]),
     ("Assistant Creative Director", "Palampur Talkies", "Dec 2022 – Jul 2023",
      "The Silent Prayer, a feature film scored by Maestro Ilaiyaraaja; premiered at the Red Lorry Film Festival.",
-     ["Led the storyboards and shaped the set, prop and visual direction.",
+     ["Led the storyboards and shaped the set, prop and visual direction; designed sets and props in Photoshop "
+      "with the art direction team and contributed to the graphic design and costume colour palette.",
       "Ran costume, art department and locations.",
-      "Worked with the director and art team on the film's marketing."]),
+      "Contributed at script readings, played a key role in talent acquisition and auditions, and coached artists "
+      "on Tamil dialect nuances for the shoot.",
+      "Supported the director as assistant director through pre-production and production, and worked with the "
+      "director and art team on the film's marketing."]),
     ("Cast Member", "Nakkalites", "2022",
      "Tamil comedy channel.",
      ["Part of the recurring cast."]),
@@ -91,9 +106,14 @@ PROJECTS = [
      ["Content strategy for an open-source AI chief of staff, built around the line "
       "\"high performers build better systems\"; grew users from 20 to 350+.",
       "Scripted and edited the launch and tutorial videos and prepared assets for the GotCOS hackathon."]),
+    ("Product Design Case Studies", "",
+     ["AMPLE: an emotionally intelligent wellness app designed not just to track mental health but to nurture it "
+      "with gentleness and intention.",
+      "In Our Paws: a pet adoption app designed to make finding and welcoming a new companion easier and more humane.",
+      "Rebranded a local banana stock vendor into an online marketplace."]),
 ]
 
-EDUCATION = [("Visual Communication", "Clusters Institute of Media and Technology, Coimbatore", "2020 – 2023",
+EDUCATION = [("Bachelor's in Visual Communication", "Clusters Institute of Media and Technology, Coimbatore", "2020 – 2023",
               "Specialised in photography, film and video production.")]
 
 FILM = [
@@ -110,6 +130,9 @@ SKILLS = [
                 "Content Calendars, Campaign Planning, Podcast Production, Social Media Analytics"),
     ("Production", "Video Editing, Motion Graphics, Voice-over, Product Walkthrough Videos, Event Films, "
                    "AI-assisted Writing Workflows"),
+    ("Product Design", "UI Design, User Flows, Design Language, Illustration, Visual Communication"),
+    ("Tools", "Adobe Premiere Pro, Adobe After Effects, Adobe Photoshop, Adobe Illustrator, Adobe XD, "
+              "DaVinci Resolve, Figma, FigJam, Sketch, Remotion, Claude, GitHub, Vercel, Notion, Miro, Slack, Audacity"),
 ]
 
 # ---- layout ---------------------------------------------------------------------------------------
@@ -117,15 +140,21 @@ INK, DIM, RULE = HexColor("#111111"), HexColor("#444444"), HexColor("#999999")
 s_name = ParagraphStyle("name", fontName="Helvetica-Bold", fontSize=20, leading=24, textColor=INK)
 s_head = ParagraphStyle("head", fontName="Helvetica", fontSize=10.5, leading=14, textColor=DIM)
 s_contact = ParagraphStyle("contact", fontName="Helvetica", fontSize=9.5, leading=13, textColor=DIM)
-s_h2 = ParagraphStyle("h2", fontName="Helvetica-Bold", fontSize=11, leading=14, textColor=INK, spaceBefore=9, spaceAfter=2)
-s_role = ParagraphStyle("role", fontName="Helvetica-Bold", fontSize=10, leading=13.5, textColor=INK, spaceBefore=5)
-s_ctx = ParagraphStyle("ctx", fontName="Helvetica-Oblique", fontSize=9.5, leading=12.5, textColor=DIM)
-s_body = ParagraphStyle("body", fontName="Helvetica", fontSize=9.5, leading=13, textColor=INK)
+LINK = "#1f4fb8"
+s_h2 = ParagraphStyle("h2", fontName="Helvetica-Bold", fontSize=11, leading=14, textColor=INK, spaceBefore=8, spaceAfter=1)
+s_role = ParagraphStyle("role", fontName="Helvetica-Bold", fontSize=10, leading=13, textColor=INK, spaceBefore=4.5)
+s_ctx = ParagraphStyle("ctx", fontName="Helvetica-Oblique", fontSize=9.3, leading=12.2, textColor=DIM)
+s_body = ParagraphStyle("body", fontName="Helvetica", fontSize=9.3, leading=12.4, textColor=INK)
 s_bullet = ParagraphStyle("bullet", parent=s_body, leftIndent=11, bulletIndent=2)
 
 
 def esc(t: str) -> str:
     return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def when(d: str) -> str:
+    """A date range that never breaks across lines."""
+    return esc(d).replace(" ", "&nbsp;")
 
 
 def section(title):
@@ -139,30 +168,31 @@ def bullets(items):
 story = [
     Paragraph(esc(NAME), s_name),
     Paragraph(esc(HEADLINE), s_head),
-    Paragraph(" | ".join(esc(c) for c in CONTACT), s_contact),
+    Paragraph(" | ".join(f'<a href="{esc(url)}" color="{LINK}"><u>{esc(text)}</u></a>' for text, url in CONTACT), s_contact),
 ]
 story += section("Summary") + [Paragraph(esc(SUMMARY), s_body)]
 story += section("Key Achievements") + bullets(HIGHLIGHTS)
 story += section("Professional Experience")
 for role, org, dates, ctx, items in EXPERIENCE:
     story.append(KeepTogether([
-        Paragraph(f"{esc(role)}, {esc(org)} | {esc(dates)}", s_role),
+        Paragraph(f"{esc(role)}, {esc(org)} | {when(dates)}", s_role),
         *([Paragraph(esc(ctx), s_ctx)] if ctx else []),
         *bullets(items),
     ]))
 story += section("Selected Projects")
 for title, dates, items in PROJECTS:
-    story.append(KeepTogether([Paragraph(f"{esc(title)} | {esc(dates)}", s_role), *bullets(items)]))
+    head = f"{esc(title)} | {when(dates)}" if dates else esc(title)
+    story.append(KeepTogether([Paragraph(head, s_role), *bullets(items)]))
 story += section("Education")
 for degree, school, dates, note in EDUCATION:
-    story += [Paragraph(f"{esc(degree)}, {esc(school)} | {esc(dates)}", s_role), Paragraph(esc(note), s_body)]
+    story += [Paragraph(f"{esc(degree)}, {esc(school)} | {when(dates)}", s_role), Paragraph(esc(note), s_body)]
 story += section("Film and Screen") + bullets(FILM)
 story += section("Skills")
 for label, items in SKILLS:
     story.append(Paragraph(f"<b>{esc(label)}:</b> {esc(items)}", s_body))
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
-doc = SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=17 * mm, rightMargin=17 * mm, topMargin=14 * mm, bottomMargin=14 * mm,
+doc = SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=17 * mm, rightMargin=17 * mm, topMargin=12 * mm, bottomMargin=12 * mm,
                         title=f"{NAME} – Resume", author=NAME, subject=HEADLINE, creator=NAME)
 doc.build(story)
 print(f"wrote {OUT}")
