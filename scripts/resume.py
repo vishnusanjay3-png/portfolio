@@ -4,6 +4,8 @@ ATS rules followed: one column, real selectable text, standard section headings,
 (Helvetica), no tables, text boxes, icons or images, dates written out on the role line.
 Run:  python3 scripts/resume.py
 """
+import json
+import re
 from pathlib import Path
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
@@ -106,21 +108,19 @@ PROJECTS = [
      ["Content strategy for an open-source AI chief of staff, built around the line "
       "\"high performers build better systems\"; grew users from 20 to 350+.",
       "Scripted and edited the launch and tutorial videos and prepared assets for the GotCOS hackathon."]),
-    ("Product Design Case Studies", "",
-     ["AMPLE: an emotionally intelligent wellness app designed not just to track mental health but to nurture it "
-      "with gentleness and intention.",
-      "In Our Paws: a pet adoption app designed to make finding and welcoming a new companion easier and more humane.",
-      "Rebranded a local banana stock vendor into an online marketplace."]),
 ]
 
 EDUCATION = [("Bachelor's in Visual Communication", "Clusters Institute of Media and Technology, Coimbatore", "2020 – 2023",
               "Specialised in photography, film and video production.")]
 
+_films = json.loads((Path(__file__).resolve().parent.parent / "content" / "site.json").read_text())["films"]
+_yt = {v["title"]: f"https://youtu.be/{v['id']}" for v in [_films["feature"], *_films["shorts"]]}
+# each line: text with {Film Title} marking a name that links to its video
 FILM = [
-    "Vindhya Victim Verdict V3 – feature film debut, cast",
-    "Luv – short film, written, directed, edited and acted",
-    "Favourite Medicine – short film, production manager, DOP and art",
-    "Also cast in the short films Ugavar, Perspective, The Arrival and The Visitor",
+    "{Vindhya Victim Verdict V3} – feature film debut, cast",
+    "{Luv} – short film, written, directed, edited and acted",
+    "{Favourite Medicine} – short film, production manager, DOP and art",
+    "Also cast in the short films {Ugavar}, {Perspective}, {The Arrival} and {The Visitor}",
 ]
 
 SKILLS = [
@@ -130,7 +130,6 @@ SKILLS = [
                 "Content Calendars, Campaign Planning, Podcast Production, Social Media Analytics"),
     ("Production", "Video Editing, Motion Graphics, Voice-over, Product Walkthrough Videos, Event Films, "
                    "AI-assisted Writing Workflows"),
-    ("Product Design", "UI Design, User Flows, Design Language, Illustration, Visual Communication"),
     ("Tools", "Adobe Premiere Pro, Adobe After Effects, Adobe Photoshop, Adobe Illustrator, Adobe XD, "
               "DaVinci Resolve, Figma, FigJam, Sketch, Remotion, Claude, GitHub, Vercel, Notion, Miro, Slack, Audacity"),
 ]
@@ -165,6 +164,11 @@ def bullets(items):
     return [Paragraph(esc(b), s_bullet, bulletText="•") for b in items]
 
 
+def linked(text: str) -> str:
+    """{Name} → the name as a link to its video."""
+    return re.sub(r"\{([^}]+)\}", lambda m: f'<a href="{_yt[m.group(1)]}" color="{LINK}"><u>{esc(m.group(1))}</u></a>', esc(text))
+
+
 story = [
     Paragraph(esc(NAME), s_name),
     Paragraph(esc(HEADLINE), s_head),
@@ -186,7 +190,7 @@ for title, dates, items in PROJECTS:
 story += section("Education")
 for degree, school, dates, note in EDUCATION:
     story += [Paragraph(f"{esc(degree)}, {esc(school)} | {when(dates)}", s_role), Paragraph(esc(note), s_body)]
-story += section("Film and Screen") + bullets(FILM)
+story += section("Film and Screen") + [Paragraph(linked(f), s_bullet, bulletText="•") for f in FILM]
 story += section("Skills")
 for label, items in SKILLS:
     story.append(Paragraph(f"<b>{esc(label)}:</b> {esc(items)}", s_body))
